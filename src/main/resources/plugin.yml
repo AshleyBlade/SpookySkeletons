@@ -1,0 +1,13 @@
+name: Spookyskeletons
+version: ${project.version}
+main: shittysituations.spookyskeletons.main
+api-version: 1.16
+prefix: SpookySkeletons
+authors: [ AshleyDavage ]
+description: A plugin that changes how skeletons function, introduces new special variants!
+website: https://github.com/AshleyBlade
+commands:
+  skelespawn:
+    description: Spawns a boss skeleton
+    Usage: /skelespawn
+
