@@ -36,7 +36,7 @@ public class SkeletonSpawnEvent implements Listener {
         if(!event.getEntity().getType().equals(EntityType.SKELETON)) return; // if not a skeleton return
 
         Random random = new Random();
-        if(!(random.nextInt(500) + 1 == 1)) return;
+        if(!(random.nextInt(1000) + 1 == 1)) return;
 
         Skeleton skeleton = (Skeleton) event.getEntity(); // Store the skeleton
 
