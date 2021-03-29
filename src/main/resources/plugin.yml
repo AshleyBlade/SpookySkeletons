@@ -9,5 +9,9 @@ website: https://github.com/AshleyBlade
 commands:
   skelespawn:
     description: Spawns a boss skeleton
-    Usage: /skelespawn
+    usage: /skelespawn
+  levelsword:
+    description: Levels the Skeleton Slayer sword by one level
+    usage: /levelsword
+
 
