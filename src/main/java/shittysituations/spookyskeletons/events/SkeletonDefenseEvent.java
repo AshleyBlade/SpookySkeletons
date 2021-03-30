@@ -1,6 +1,6 @@
 package shittysituations.spookyskeletons.events;
 
-import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Skeleton;
@@ -8,11 +8,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
-import org.bukkit.util.Vector;
-import shittysituations.spookyskeletons.items.SkeletonSlayerItem;
 import shittysituations.spookyskeletons.main;
 
 import java.util.ArrayList;
@@ -29,11 +26,15 @@ public class SkeletonDefenseEvent implements Listener {
 
     @EventHandler
     public void onSkeletonDamaged(EntityDamageByEntityEvent event){
+        if(!(event.getEntity() instanceof Skeleton)) return; // if not a skeleton
         if(!(event.getDamager() instanceof Player)) return; // if not player return
 
         Player player = (Player) event.getDamager(); // Cast damager to Player
-        ItemStack item = player.getInventory().getItemInMainHand();
-        if(!Objects.requireNonNull(item.getItemMeta()).hasDisplayName()) return;
+
+        if(player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) return; // if the item in hand is air return
+        ItemStack item = player.getInventory().getItemInMainHand(); // store the mainhand item
+
+        if(!Objects.requireNonNull(item.getItemMeta()).hasDisplayName()) return; // if item has no meta return
         if(item.equals(item.getItemMeta().getDisplayName().contains("Skeleton Slayer"))){
             NamespacedKey key = new NamespacedKey(plugin, "skeletonslayerlevels"); // store the NamespacedKey for skeleton slayer levels
             PersistentDataContainer container = item.getItemMeta().getPersistentDataContainer();
